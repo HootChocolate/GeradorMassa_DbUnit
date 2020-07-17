@@ -1,0 +1,73 @@
+package seuBarrigaPontoCom_Estrategia2;
+/**Insere uma conta no banco Utilizando o ContaService e a estratégia dois de gerenciamento de dados
+ * 
+ * @author jay
+ */
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+
+import com.github.javafaker.Faker;
+
+import Utils.BaseUtil;
+import br.ce.wcaquino.entidades.Conta;
+import br.ce.wcaquino.entidades.Usuario;
+import br.ce.wcaquino.service.ContaService;
+import br.ce.wcaquino.service.UsuarioService;
+import pages.HomePage;
+import pages.LoginPage;
+
+public class InserirContaNoBanco_ContaServiceTest extends BaseUtil{
+
+	private ContaService contaService = new ContaService();
+	private static UsuarioService usuarioService = new UsuarioService();
+	private static Usuario usuarioGlobal;
+	private Conta contaGlobal;
+	private static Faker faker = new Faker();
+	
+	@BeforeClass
+	public static void beforeClass() throws Exception {
+		usuarioGlobal = new Usuario(faker.dragonBall().character(), faker.internet().emailAddress(), faker.internet().password());
+		
+		usuarioService.salvar(usuarioGlobal);
+	}
+	
+	@Before
+	public void setUp() throws Exception {
+		
+		contaGlobal = new Conta(faker.backToTheFuture().character(), usuarioGlobal);
+	}
+	
+//	@Test
+	public void testInserirContaNoBanco() throws Exception {
+
+		Conta conta = contaService.salvar(contaGlobal);
+		
+		assertNotNull(conta.getId());
+		
+	}
+	
+//	@Test
+	public void testConsultarContaNoBanco() throws Exception {
+		
+		Conta conta = contaService.salvar(contaGlobal);
+		
+		assertEquals("[ERRO]Houveram erros ao tentar consultar uma conta no banco", conta.getNome(), conta.getNome());
+		
+	}
+	
+	@Test
+	public void testAlterarUmaContaNoBanco() throws Exception {
+		
+		contaService.findById(usuarioGlobal.getId()).setNome(usuarioGlobal.getNome() + " Alterado!");
+		
+		String nomeAlterado = contaService.findById(usuarioGlobal.getId()).getNome();
+		
+	}
+	
+}

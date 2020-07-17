@@ -1,0 +1,13 @@
+package pages;
+
+import org.openqa.selenium.WebDriver;
+
+public class AdicionarPage {
+
+	WebDriver navegador = null;
+	
+	public AdicionarPage(WebDriver navegador) {
+		this.navegador = navegador;
+	}
+	
+}

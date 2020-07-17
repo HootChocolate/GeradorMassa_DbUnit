@@ -1,0 +1,15 @@
+1594360283209	Rename type 'StartSelenium'
+1594360457710	Delete element
+1594395521972	Delete element
+1594395533684	Rename package 'inicio'
+1594395580029	Rename local variable 'conn'
+1594395629912	Rename local variable 'conn'
+1594395729698	Rename type 'RealizarLoginTest'
+1594395824315	Rename method 'getResultadoDaOperacao'
+1594395838300	Rename method 'getMensagemFeddback'
+1594396098714	Rename method 'realizaLoginTest'
+1594405965935	Delete element
+1594406169381	Rename type 'ListarPage'
+1594407232321	Rename type 'ContasPage'
+1594412059939	Rename method 'listarContasTest'
+1594412635562	Rename local variable 'nome'

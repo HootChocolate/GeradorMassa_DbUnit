@@ -1,0 +1,55 @@
+package seuBarrigaPontoCom_Estrategia3;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Test;
+
+import com.github.javafaker.Faker;
+
+import br.ce.wcaquino.entidades.Conta;
+import br.ce.wcaquino.entidades.ContaMassaDado;
+import br.ce.wcaquino.service.ContaService;
+import br.ce.wcaquino.service.UsuarioService;
+
+public class TesteContaService {
+	
+	private MassaDAOImpl massaDao = new MassaDAOImpl();
+	private ContaService contaService = new ContaService();
+	
+	
+//	@Test
+	public void testConsultarConta() throws Exception {
+
+		ContaMassaDado massaConta = massaDao.obterValorMassa(GeradorDeMassa.CONTA);
+		Conta contaConsulta = contaService.findByName(massaConta.getValor());
+	
+		assertNotNull("[ERRO]Houveram erros ao tentar consultar uma conta no catalogo de contas\n", contaConsulta);
+	}
+	
+//	@Test
+	public void testEditarUmaConta() throws Exception {
+		
+		ContaMassaDado massaConta = massaDao.obterValorMassa(GeradorDeMassa.CONTA);
+		
+		String nomeOriginal = massaConta.getValor();
+
+		String novoValor = nomeOriginal + " Alterado!";
+		
+		Conta contaParaEditar = contaService.findByName(massaConta.getValor());
+		
+		contaParaEditar.setNome(novoValor);
+		
+		Conta contaEditada  = contaService.salvar(contaParaEditar);
+		
+		assertEquals("[ERRO]Houve erro ao tentar alterar o nome de uma conta utilizando a massa de dado", novoValor, contaEditada.getNome());
+	}
+	
+	@Test
+	public void testRemoverUmaConta() throws Exception {
+		
+		ContaMassaDado massaDeDado = massaDao.obterValorMassa(GeradorDeMassa.CONTA);
+		
+	}
+
+}

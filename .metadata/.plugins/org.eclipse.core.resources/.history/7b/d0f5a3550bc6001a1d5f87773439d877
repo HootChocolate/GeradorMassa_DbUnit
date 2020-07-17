@@ -1,0 +1,9 @@
+package seuBarrigaPontoCom_Estrategia2;
+
+/**Insere um usuário no banco utilizando o UsuarioService, e utiliza a estratégia #02 de gerenciamento de dados.
+ * 
+ * @author jay
+ */
+public class InserirUsuarioNoBanco_UsuarioServiceTest {
+
+}

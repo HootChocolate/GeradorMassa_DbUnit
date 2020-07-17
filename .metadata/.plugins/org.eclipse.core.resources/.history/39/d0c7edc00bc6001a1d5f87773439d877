@@ -1,0 +1,39 @@
+package seuBarrigaPontoCom_Estrategia2;
+
+import org.junit.Test;
+
+import br.ce.wcaquino.service.UsuarioService;
+
+/**Insere um usuário no banco utilizando o UsuarioService, e utiliza a estratégia #02 de gerenciamento de dados.
+ * 
+ * @author jay
+ */
+public class InserirUsuarioNoBanco_UsuarioServiceTest {
+
+	private UsuarioService usuarioService = new UsuarioService();
+	
+	@Test
+	public void testInserirUsuarioNoBanco() {
+		
+	}
+	
+//	@Test
+	public void testConsultarUsuarioNoBanco() {
+		
+	}
+	
+//	@Test
+	public void testEditarUsuarioNoBanco() {
+		
+	}
+	
+//	@Test
+	public void testRemoverUsuarioDoBanco() {
+		
+	}
+	
+	public void criarUsuario() {
+		
+	}
+	
+}

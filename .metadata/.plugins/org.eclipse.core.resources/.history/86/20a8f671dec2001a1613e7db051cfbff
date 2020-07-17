@@ -1,0 +1,31 @@
+package pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class ContasPage {
+
+	WebDriver navegador = null;
+	
+	/**
+	 * Está classe diz respeito ao operações possíveis de serem realizadas na página de lista de contas
+	 * 
+	 * @param navegador
+	 */
+	public ContasPage(WebDriver navegador) {
+		this.navegador = navegador;
+	}
+	
+	public EditarContaPage clicarNoBotaoEditarConta(WebDriver navegador) {
+	
+		navegador.findElement(By.xpath("//table[@id=\"tabelaContas\"]//a[contains(@href, 'editarConta')]")).click();
+		
+		return new EditarContaPage(WebDriver navegador);
+	}
+	
+	public void clicarNoBotaoRemoverConta(WebDriver navegador) {
+		
+	}
+	
+	
+}

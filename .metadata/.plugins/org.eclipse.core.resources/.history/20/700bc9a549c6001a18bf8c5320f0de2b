@@ -1,0 +1,5 @@
+package br.ce.wcaquino.service;
+
+public class MassaService {
+
+}

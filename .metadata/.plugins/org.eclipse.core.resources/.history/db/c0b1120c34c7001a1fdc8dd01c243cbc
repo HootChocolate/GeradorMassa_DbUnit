@@ -1,0 +1,17 @@
+package seuBarrigaPontoCom_Estrategia3;
+
+import java.sql.SQLException;
+
+import br.ce.wcaquino.entidades.ContaMassaDado;
+
+public interface MassaDAO {
+
+	public void inserirMassa(String tipo, String valor) throws Exception;
+	
+	public ContaMassaDado obterValorConta(String valor) throws Exception;
+	
+	public boolean alterarUsadoParaFalso(long id) throws Exception;
+
+	long obterIdDaConta(ContaMassaDado contaSeuBarriga) throws ClassNotFoundException, SQLException;
+
+}

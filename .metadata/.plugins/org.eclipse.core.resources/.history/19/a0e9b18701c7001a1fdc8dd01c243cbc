@@ -1,0 +1,113 @@
+package seuBarrigaPontoCom_Estrategia3;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+
+import com.github.javafaker.Faker;
+
+import Utils.BaseUtil;
+import br.ce.wcaquino.entidades.ContaSeuBarriga;
+import pages.HomePage;
+import pages.LoginPage;
+
+/**
+ * Essa classe é responsável por acessar o site do seu barriga e utilizar as
+ * informações do banco de dados para preenchimento de informações
+ * 
+ * @author jay
+ */
+public class TesteWebSiteSrBarriga_Selenium extends BaseUtil {
+	public WebDriver navegador;
+
+	private static GeradorDeContas_SrBarriga gerador;
+	private static String CONTA_SEU_BARRIGA = "CONTA_SrB";
+	private static Faker faker = new Faker();
+
+	@BeforeClass
+	public static void beforeClass() {
+		gerador = new GeradorDeContas_SrBarriga();
+	}
+
+	@Before
+	public void setUp() throws Exception {
+		navegador = getChromeWebDriver("https://seubarriga.wcaquino.me/login");
+
+		new LoginPage(navegador)
+			.informarEmailESenha("jose@jose.com", "josejose")
+			.clicaNoBotaoEntrar();
+	}
+
+//	@Test
+	public void testInsereUmaContaNoSeuBarriga() throws Exception {
+
+		String nomeConta = faker.gameOfThrones().character() + " " + faker.gameOfThrones().dragon();
+
+		String resultado = new HomePage(navegador)
+				.clicarNoMenuContas(navegador)
+				.clicarNaOpcaoAdicionar(navegador)
+				.inserirNome(nomeConta)
+				.clicarNoBotaoSalvar(navegador)
+				.getMensagemFeedback(navegador);
+
+		assertEquals(
+				"[ERRO]Houve algum erro ao tentar adicionar uma conta no seu barriga utilizando informação do banco.",
+				"Conta adicionada com sucesso!", resultado);
+
+		inserirConta(nomeConta);
+	}
+
+	@SuppressWarnings("static-access")
+//	@Test
+	public void testConsultaContaNoSeuBarriga() throws Exception {
+
+		ContaSeuBarriga contaSeuBarriga = gerador.obterMassaDeDados();
+		
+		String resultado = new HomePage(navegador)
+			.clicarNoMenuContas(navegador)
+			.clicarNaOpcaoLista(navegador)
+			.consultaUmaContaNaListaDeContas(navegador, contaSeuBarriga.getContaSeuBarriga());
+		
+		assertEquals("[ERRO]Houve algum erro ao tentar consultar uma conta no seu barriga utilizando informação do banco."
+				, contaSeuBarriga.getContaSeuBarriga(), resultado);
+
+		gerador.alterarUsadoParaFalso(contaSeuBarriga.getId());
+	}
+
+	@Test
+	public void testRemoverUmaContaNoSeubarriga() throws Exception {
+		
+		ContaSeuBarriga contaSeuBarriga = gerador.obterMassaDeDados();
+		
+		assertNotNull("[ERRO]Houve erro ao obter um dado do banco de dados", contaSeuBarriga);
+		
+		String resultado = new HomePage(navegador)
+			.clicarNoMenuContas(navegador)
+			.clicarNaOpcaoLista(navegador)
+			.clicarNoBotaoRemoverConta(navegador, contaSeuBarriga.getContaSeuBarriga())
+			.getMensagemFeedback(navegador);
+		
+		assertEquals("[ERRO]Houve algum erro ao tentar remover um conta no seu barriga, utilizando a informação do dado"
+				,"Conta removida com sucesso!", resultado);
+	}
+	
+	private void inserirConta(String nomeConta) throws Exception {
+		MassaDAOImpl massaDao = new MassaDAOImpl();
+		massaDao.inserirConta(CONTA_SEU_BARRIGA, nomeConta);
+	}
+	
+	@Test
+	public void testEditarContaNoSeuBarriga() {
+		
+	}
+	
+	@After
+	public void teardown() {
+		navegador.quit();
+	}
+	
+}

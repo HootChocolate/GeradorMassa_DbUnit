@@ -1,0 +1,9 @@
+package br.ce.wcaquino.dao;
+
+import br.ce.wcaquino.entidades.Conta;
+
+public interface MassaDAO {
+
+	public void inserirConta() throws Exception;
+	
+}

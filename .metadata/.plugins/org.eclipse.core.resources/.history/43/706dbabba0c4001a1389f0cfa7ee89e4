@@ -1,0 +1,60 @@
+package SeuBarrigaEstrategia2;
+
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runners.MethodSorters;
+
+import br.ce.wcaquino.dao.ContaDAO;
+import br.ce.wcaquino.dao.UsuarioDAO;
+import br.ce.wcaquino.dao.impl.ContaDAOImpl;
+import br.ce.wcaquino.entidades.Conta;
+import br.ce.wcaquino.entidades.Usuario;
+import br.ce.wcaquino.service.ContaService;
+import br.ce.wcaquino.service.UsuarioService;
+
+/**
+ * 
+ * @author jay
+ *
+ */
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class SeuBarrigaPontoCom {
+	
+	@Test
+	public void test_1_inseriUmaContaNoBanco() throws Exception {
+		
+		Long id = 12345678910L;
+		
+		Usuario user = new Usuario();
+		user.setEmail("email@email.com");
+		user.setNome("nome");
+		user.setSenha("senha");
+		user.setId(id);
+		
+		Conta conta = new Conta();
+		conta.setNome("nome");
+		conta.setUsuario(user);
+		
+		ContaService contaService = new ContaService();
+		
+		contaService.salvar(conta);
+		
+	}
+	
+//	@Test
+	public void test_2_consultaUmaContaNoBanco() {
+		
+	}
+	
+//	@Test
+	public void test_3_editaUmaContaNoBanco() {
+		
+	}
+	
+//	@Test
+	public void test_4_removeUmaContaNoBanco() {
+		
+	}
+	
+}

@@ -1,0 +1,12 @@
+package seuBarrigaEstratégia5;
+
+import org.junit.BeforeClass;
+
+public class TestWebSiteSeuBarriga_Selenium {
+
+	@BeforeClass
+	public void beforeClass() {
+		
+	}
+	
+}

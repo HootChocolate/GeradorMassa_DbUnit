@@ -1,0 +1,23 @@
+package seuBarrigaPontoCom_Estrategia3;
+
+import com.github.javafaker.Faker;
+
+public class GeradorDeMassa_Servico {
+
+	private static Faker faker = new Faker();
+	private static MassaDAOImpl massaDao = new MassaDAOImpl();
+	
+	private static void gerrarMassaDeDado(int quantidade) throws Exception {
+		
+		for(int i = 0; i < quantidade ; i++) {
+			String nomeConta = faker.shakespeare().kingRichardIIIQuote();
+			
+			massaDao.inserirConta(, nomeConta);
+		}
+		
+	}
+
+	public static void main(String[] args) throws Exception {
+		gerrarMassaDeDado(10);
+	}
+}

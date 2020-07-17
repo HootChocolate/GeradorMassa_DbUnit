@@ -1,0 +1,53 @@
+package seuBarrigaPontoCom_Estrategia2;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.github.javafaker.Faker;
+
+import br.ce.wcaquino.entidades.Usuario;
+import br.ce.wcaquino.service.UsuarioService;
+
+/**Insere um usuário no banco utilizando o UsuarioService, e utiliza a estratégia #02 de gerenciamento de dados.
+ * 
+ * @author jay
+ */
+public class InserirUsuarioNoBanco_UsuarioServiceTest {
+
+	private UsuarioService usuarioService = new UsuarioService();
+	private static Usuario usuarioGlobal;
+	private static Faker faker = new Faker();
+	
+	@BeforeClass
+	public static void beforeClass() {
+		String nome = faker.artist().name() + " - " + faker.number().randomNumber();
+		String email = faker.internet().emailAddress();
+		String senha = faker.internet().password();
+		
+		usuarioGlobal = new Usuario(nome, email, senha);
+	}
+	@Test
+	public void testInserirUsuarioNoBanco() {
+		criarUsuario();
+	}
+	
+//	@Test
+	public void testConsultarUsuarioNoBanco() {
+		
+	}
+	
+//	@Test
+	public void testEditarUsuarioNoBanco() {
+		
+	}
+	
+//	@Test
+	public void testRemoverUsuarioDoBanco() {
+		
+	}
+	
+	public void criarUsuario() {
+		usuarioService.salvar(usuario);
+	}
+	
+}

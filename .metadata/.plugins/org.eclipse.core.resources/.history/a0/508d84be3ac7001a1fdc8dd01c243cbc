@@ -1,0 +1,25 @@
+package seuBarrigaPontoCom_Estrategia3;
+
+import org.junit.Test;
+
+public class TestUsuarioService {
+	
+	private MassaDAOImpl massaDao = new MassaDAOImpl();
+	
+	@Test
+	public void testConsultarUsuario() throws Exception {
+		
+		massaDao.obterValorMassa(GeradorDeMassa.USUARIO);
+		
+		
+	}
+	@Test
+	public void testEditarUsuario() {
+		
+	}
+	@Test
+	public void testRemoverUsuario() {
+		
+	}
+	
+}

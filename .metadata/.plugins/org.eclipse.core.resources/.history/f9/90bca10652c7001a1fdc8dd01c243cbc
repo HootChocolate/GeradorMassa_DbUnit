@@ -1,0 +1,33 @@
+package seuBarrigaPontoCom_Estrategia3;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import br.ce.wcaquino.dao.utils.ConnectionFactory;
+
+public class MonitorarEstoqueDeMassa {
+
+	private static Integer QUANTIDADE_MINIMA = 5;
+	
+	public static void gerarConta() throws ClassNotFoundException, SQLException {
+		
+		PreparedStatement stmt = ConnectionFactory
+				.getConnection().prepareStatement("SELECT COUNT(*) FROM massas WHERE tipo = 'USUARIO' AND usada = false");
+		
+		ResultSet rs = stmt.executeQuery();
+		
+		System.out.println(rs.next());
+		System.out.println(rs);
+//		while(true) {
+//			
+//			
+//			
+//		}
+		
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+}

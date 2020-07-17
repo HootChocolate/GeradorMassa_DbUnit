@@ -1,0 +1,27 @@
+package seuBarrigaPontoCom_Estrategia2;
+/**Insere uma conta no banco Utilizando o ContaService e a estratégia dois de gerenciamento de dados
+ * 
+ * @author jay
+ */
+
+import org.junit.Test;
+
+import br.ce.wcaquino.entidades.Conta;
+import br.ce.wcaquino.service.ContaService;
+import br.ce.wcaquino.service.UsuarioService;
+
+public class InserirContaNoBanco_ContaServiceTest {
+
+	private ContaService contaService = new ContaService();
+	private UsuarioService usuarioService = new UsuarioService();
+	
+	@Test
+	public void testInserirContaNoBanco() {
+		
+		Conta conta = new Conta(nome, usuario);
+		
+		contaService.salvar(conta);
+		
+	}
+	
+}

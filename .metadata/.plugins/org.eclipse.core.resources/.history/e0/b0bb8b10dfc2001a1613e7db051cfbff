@@ -1,0 +1,41 @@
+package pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class AdicionarPage {
+
+	WebDriver navegador = null;
+	
+	public AdicionarPage(WebDriver navegador) {
+		this.navegador = navegador;
+	}
+	
+	/**
+	 * Insere o valor informado no input de nome
+	 * @param nome
+	 * @return
+	 */
+	public AdicionarPage inserirNome(String nome) {
+		
+		navegador.findElement(By.id("nome")).sendKeys(nome);
+		
+		return this;
+	}
+	
+	public HomePage clicarNoBotaoSalvar(WebDriver navegador) {
+		
+		navegador.findElement(By.tagName("button")).click();
+		
+		return new HomePage(navegador);
+	}
+	
+	public HomePage inserirNomeESalvarUsuario(WebDriver navegador, String nome) {
+		
+		inserirNome(nome);
+		clicarNoBotaoSalvar(navegador);
+		
+		return new HomePage(navegador);
+	}
+	
+}

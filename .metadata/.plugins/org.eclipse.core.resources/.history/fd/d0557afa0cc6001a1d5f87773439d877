@@ -1,0 +1,65 @@
+package seuBarrigaPontoCom_Estrategia2;
+
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.github.javafaker.Faker;
+
+import br.ce.wcaquino.entidades.Usuario;
+import br.ce.wcaquino.service.UsuarioService;
+
+/**Insere um usuário no banco utilizando o UsuarioService, e utiliza a estratégia #02 de gerenciamento de dados.
+ * 
+ * @author jay
+ */
+public class InserirUsuarioNoBanco_UsuarioServiceTest {
+
+	private UsuarioService usuarioService = new UsuarioService();
+	private Usuario usuarioDeTeste;
+	private static Usuario usuarioGlobal;
+	private static Faker faker = new Faker();
+	
+	@BeforeClass
+	public static void beforeClass() {
+		
+		String nome = faker.artist().name() + " - " + faker.number().randomNumber();
+		String email = faker.internet().emailAddress();
+		String senha = faker.internet().password();
+		
+		usuarioGlobal = new Usuario(nome, email, senha);
+	}
+	
+	@Before
+	public void setUp() throws Exception {
+		usuarioDeTeste = criarUsuario();
+	}
+	
+	@Test
+	public void testInserirUsuarioNoBanco() throws Exception {
+		
+		assertNotNull("[ERRO] Houveram erros ao tentar criar um usuário no banco", usuarioDeTeste);
+	}
+	
+	@Test
+	public void testConsultarUsuarioNoBanco() throws Exception  {
+		Usuario usuarioConsultado = usuarioService.findById(usuarioDeTeste.getId());
+	}
+	
+//	@Test
+	public void testEditarUsuarioNoBanco() {
+		
+	}
+	
+//	@Test
+	public void testRemoverUsuarioDoBanco() {
+		
+	}
+	
+	public Usuario criarUsuario() throws Exception {
+		return usuarioService.salvar(usuarioGlobal);
+	}
+	
+}

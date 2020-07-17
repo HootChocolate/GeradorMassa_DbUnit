@@ -1,0 +1,25 @@
+package br.ce.wcaquino.entidades;
+
+public class ContaSeuBarriga {
+
+	private long id;
+	private String contaSeuBarriga;
+	
+	public ContaSeuBarriga() {}
+	
+	public void setId(long id) {
+		this.id = id;
+	}
+	
+	public long getId() {
+		return id;
+	}
+	
+	public void setContaSeuBarriga(String contaSeuBarriga) {
+		this.contaSeuBarriga = contaSeuBarriga;
+	}
+	
+	public String getContaSeuBarriga() {
+		return contaSeuBarriga;
+	}	
+}

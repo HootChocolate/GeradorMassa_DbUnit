@@ -1,0 +1,21 @@
+package pages;
+
+import org.openqa.selenium.WebDriver;
+
+public class EditarContaPage {
+
+	WebDriver navegador = null;
+	
+	public EditarContaPage(WebDriver navegador) {
+		this.navegador = navegador;
+	}
+	
+	public void inserirNovoValorNoCampoNome(WebDriver navegador, String nome) {
+		
+	}
+	
+	public void clicarNoBotaoSalvar() {
+		
+	}
+	
+}

@@ -1,0 +1,74 @@
+package seuBarrigaPontoCom_Estrategia2;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import com.github.javafaker.Faker;
+
+import br.ce.wcaquino.entidades.Usuario;
+import br.ce.wcaquino.service.UsuarioService;
+
+/**Insere um usuário no banco utilizando o UsuarioService, e utiliza a estratégia #02 de gerenciamento de dados.
+ * 
+ * @author jay
+ */
+public class InserirUsuarioNoBanco_UsuarioServiceTest {
+
+	private UsuarioService usuarioService = new UsuarioService();
+	private Usuario usuarioDeTeste;
+	private static Usuario usuarioGlobal;
+	private static Faker faker = new Faker();
+	
+
+	@Before
+	public void setUp() throws Exception {
+		usuarioDeTeste = criarUsuario();
+	}
+	
+	@Test
+	public void testInserirUsuarioNoBanco() throws Exception {
+		
+		assertNotNull("[ERRO] Houveram erros ao tentar criar um usuário no banco", usuarioDeTeste);
+	}
+	
+	@Test
+	public void testConsultarUsuarioNoBanco() throws Exception {
+
+		Usuario usuarioConsultado = usuarioService.findById(usuarioDeTeste.getId());
+		
+		assertEquals("[ERRO] Houveram erros ao tentar consultar um usuário no banco", usuarioConsultado.getNome(), usuarioDeTeste.getNome());
+	}
+	
+	@Test
+	public void testEditarUsuarioNoBanco() throws Exception {
+		
+		String novoNome = usuarioDeTeste.getNome() + " Alterado! ";
+		usuarioDeTeste.setNome(novoNome);
+		Usuario usuarioSalvo = usuarioService.salvar(usuarioDeTeste);
+		
+		assertEquals("[ERRO] Houveram erros ao tentar editar o nome de um usuário no banco de dados", novoNome, usuarioSalvo.getNome());
+	}
+	
+	@Test
+	public void testRemoverUsuarioDoBanco() throws Exception {
+		
+		Usuario usuarioCriado = criarUsuario();
+		
+		long idUsuarioCriado = usuarioCriado.getId();
+
+		usuarioService.delete(usuarioCriado);
+		
+		Usuario usuarioProcurado = usuarioService.findById(idUsuarioCriado);
+		
+		assertNull("[ERRO] Houveram erros ao tertar remover um usuario do banco", usuarioProcurado);
+	}
+	
+	public Usuario criarUsuario() throws Exception {
+		return usuarioService.salvar(usuarioGlobal);
+	}
+	
+}

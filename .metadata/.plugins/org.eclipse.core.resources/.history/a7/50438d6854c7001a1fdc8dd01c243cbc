@@ -1,0 +1,33 @@
+package seuBarrigaPontoCom_Estrategia3;
+
+import java.sql.SQLException;
+
+public class MonitorarEstoqueDeMassa {
+
+	private static Integer QUANTIDADE_MINIMA = 5;
+	
+	public static void monitorarQuantidadeDeContas() throws ClassNotFoundException, SQLException {
+		
+		MassaDAOImpl massaDao = new MassaDAOImpl();
+		GeradorDeMassa gerador = new GeradorDeMassa();
+		
+		while(true) {
+			int quantidadeAtual = massaDao.obterQuantidadeDeContas(GeradorDeMassa.USUARIO);
+			
+			System.out.println("Quantidade de contas: " + quantidadeAtual);
+			
+			if(quantidadeAtual < QUANTIDADE_MINIMA) {
+				gerador.gerarMassaDeDadosServico(QUANTIDADE_MINIMA);
+			} else {
+				
+			}
+			
+			
+		}
+		
+	}
+	
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		monitorarQuantidadeDeContas();
+	}
+}

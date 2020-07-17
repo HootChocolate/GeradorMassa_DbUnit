@@ -1,0 +1,43 @@
+package br.ce.wcaquino.service;
+
+import com.github.javafaker.Faker;
+
+import br.ce.wcaquino.dao.impl.MassaDAOImpl;
+
+public class MassaService {
+
+	private static Faker faker = new Faker();
+	private static String tipo = "CONTA_SrB";
+	private static MassaDAOImpl dao;
+	
+	public MassaService() {
+		dao = new MassaDAOImpl();
+	}
+	
+	/**Chama um método na classe MassaDAOImpl de inserção de dados, que insere uma conta no banco, dentro da tabela 'Massas'
+	 * 
+	 * @throws Exception
+	 */
+	public static void inserirDadoNoBanco_tabelaMassaDeDados(String tipo, String valor) throws Exception {
+		dao.inserirConta(tipo, valor);
+	}
+	
+	public static String obterValorDadoDoBanco_tabelaMassaDeDados(String tipo) throws Exception {
+		return dao.obterValorConta(tipo);
+	}
+	
+	public static void main(String[] args) throws Exception {
+		
+		dao = new MassaDAOImpl();
+		
+		obterValorDadoDoBanco_tabelaMassaDeDados("CONTA_SrB");
+
+		// Insere 5 registro na tabela de massas
+//		for(int i = 0; i < 5 ; i++) {
+//			
+//			String valor = faker.dragonBall().character() + " - " + faker.number().randomDigit();
+//			
+//			inserirDadoNoBanco_tabelaMassaDeDados(tipo, valor);
+//		}
+	}
+}

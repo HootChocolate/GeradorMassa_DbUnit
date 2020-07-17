@@ -1,0 +1,111 @@
+package seuBarrigaPontoCom_Estrategia3;
+
+import java.sql.SQLException;
+
+import org.openqa.selenium.WebDriver;
+
+import com.github.javafaker.Faker;
+
+import Utils.BaseUtil;
+import br.ce.wcaquino.entidades.Conta;
+import br.ce.wcaquino.entidades.ContaMassaDado;
+import br.ce.wcaquino.service.ContaService;
+import pages.LoginPage;
+
+/**Essa class acessa o servidor do Seu Barriga, gera dados e adiciona eles no banco de dados.
+ * Essa classe seria o "Robozinho" gerador 
+ * @author jay
+ *
+ */
+public class GeradorDeMassa extends BaseUtil{
+	
+	protected static GeradorDeMassa gerador = new GeradorDeMassa();
+	protected static String CONTA_SEU_BARRIGA = "CONTA_SrB";
+	protected static String CONTA_SERV = "CONTA";
+	private static MassaDAOImpl massaDao = new MassaDAOImpl();
+	
+	/**Método responsável por acessar o servidor do Seu Barriga, criar uma conta la
+	 * e salvar a conta no banco.
+	 * 
+	 * @throws Exception
+	 */
+	public void acessarAplicacao() throws Exception {
+		
+		WebDriver navegador = getChromeWebDriver("https://seubarriga.wcaquino.me/login");
+		
+		Faker faker = new Faker();
+		String nomeConta = faker.gameOfThrones().character() + " " + faker.gameOfThrones().dragon();
+		
+		String contaSalva = new LoginPage(navegador)
+			.informarEmailESenha("jose@jose.com", "josejose")
+			.clicaNoBotaoEntrar()
+			.clicarNoMenuContas(navegador)
+			.clicarNaOpcaoAdicionar(navegador)
+			.inserirNome(nomeConta)
+			.clicarNoBotaoSalvar(navegador)
+			.consultaUmaContaNaListaDeContas(navegador, nomeConta);
+		
+		navegador.quit();
+		
+		MassaDAOImpl geradorDeMassa = new MassaDAOImpl();
+		geradorDeMassa.inserirConta(CONTA_SEU_BARRIGA, contaSalva);
+		
+	}
+	
+	/**Este método acessa a aplicação e gera a massa de dados
+	 * 
+	 * @param quantidade
+	 * @throws Exception
+	 */
+	public static void gerarMassaDeDadosSeleniumSeuBarriga(int quantidade) throws Exception {
+		
+		for(int i = 0 ; i < quantidade ; i++) {
+			gerador.acessarAplicacao();
+		}
+	}
+	
+	/**
+	 * Este método acessa o banco de dados e pega o valor de uma conta no servidor do Seu Barriga
+	 * @return
+	 * @throws Exception
+	 */
+	public static ContaMassaDado obterMassaDeDados() throws Exception {
+		return new MassaDAOImpl().obterValorConta(CONTA_SEU_BARRIGA);
+	}
+	
+	
+	public long obterIdDaConta(ContaMassaDado nomeDaConta) throws ClassNotFoundException, SQLException {
+		
+		return new MassaDAOImpl().obterIdDaConta(nomeDaConta);
+	}
+
+	/**
+	 * Em alguns casos pode ser feito uma consulta e não alterar o valor do dado mas marca-lo como utilizado,
+	 * nesse caso ele pode ser inutilizado de novo
+	 * @param id
+	 * @throws Exception 
+	 */
+	public void alterarUsadoParaFalso(long id) throws Exception {
+		new MassaDAOImpl().alterarUsadoParaFalso(id);
+		
+	}
+	
+	private static void gerarMassaDeDadosServico(int quantidade) throws Exception {
+		
+		ContaMassaDado nomeConta = new MassaDAOImpl().obterValorConta(CONTA_SERV);
+		
+		ContaService contaService = new ContaService();
+		Conta conta = new Conta(nomeConta, usuario);
+
+		contaService.salvar(conta);
+		
+	}
+	
+	public static void main(String[] args) throws Exception {
+		
+//		gerarMassaDeDadosSeleniumSeuBarriga(5);			
+		
+		gerarMassaDeDadosServico(10);
+	}
+
+}

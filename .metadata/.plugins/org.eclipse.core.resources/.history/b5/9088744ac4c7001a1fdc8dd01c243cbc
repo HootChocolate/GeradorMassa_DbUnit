@@ -1,0 +1,23 @@
+package seuBarrigaEstratégia5;
+
+import org.junit.BeforeClass;
+import org.openqa.selenium.WebDriver;
+
+import Utils.BaseUtil;
+import pages.LoginPage;
+
+public class TestWebSiteSeuBarriga_Selenium extends BaseUtil{
+
+	private WebDriver navegador;
+	
+	@BeforeClass
+	public void beforeClass() {
+		navegador = getChromeWebDriver("https://seubarriga.wcaquino.me/login");
+		
+		new LoginPage(navegador)
+			.informarEmail("jose@jose.com")
+			.informarSenha("josejose")
+			.clicaNoBotaoEntrar();
+	}
+	
+}

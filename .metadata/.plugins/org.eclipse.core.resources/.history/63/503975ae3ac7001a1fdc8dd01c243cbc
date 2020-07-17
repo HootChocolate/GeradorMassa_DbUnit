@@ -1,0 +1,25 @@
+package seuBarrigaPontoCom_Estrategia3;
+
+import org.junit.Test;
+
+public class TestUsuarioService {
+
+	@Test
+	public void testInserirUsuario() {
+		
+	}
+	
+	@Test
+	public void testConsultarUsuario() {
+		
+	}
+	@Test
+	public void testEditarUsuario() {
+		
+	}
+	@Test
+	public void testRemoverUsuario() {
+		
+	}
+	
+}

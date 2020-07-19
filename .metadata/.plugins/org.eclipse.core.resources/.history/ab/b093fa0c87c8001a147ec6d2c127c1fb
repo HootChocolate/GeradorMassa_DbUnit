@@ -1,0 +1,9 @@
+package seuBarrigaPontoCom_estrategia5;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class TestService_Usuario {
+	
+	
+}

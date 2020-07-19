@@ -18,6 +18,7 @@ import br.ce.wcaquino.service.ContaService;
  * 
  * Antes de cada teste os valores do banco de dados são limpos, então em cada teste é inserido um valor,
  * o qual é utilizado para fazer o teste.
+ * Caso eu tivesse acesso ao banco de dados do Seu Barriga, eu poderia fazer isso via web
  * 
  * @author jay
  */

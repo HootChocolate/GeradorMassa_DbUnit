@@ -1,0 +1,107 @@
+package seuBarrigaPontoCom_estrategia4;
+
+import static org.junit.Assert.assertNotNull;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import br.ce.wcaquino.dao.utils.ConnectionFactory;
+import br.ce.wcaquino.entidades.Usuario;
+import br.ce.wcaquino.service.UsuarioService;
+
+public class TestService_Usuario {
+
+	private UsuarioService usuarioService = new UsuarioService();
+	
+	@Before
+	public void setUp() throws Exception {
+		
+		Connection conexaoJDBC = ConnectionFactory.getConnection();
+		
+		conexaoJDBC.prepareStatement("WITH consulta AS (DELETE FROM contas) DELETE FROM usuarios").execute();
+		
+		ConnectionFactory.closeConnection();
+	}
+	
+	@Test
+	public void testInsercaoUsuario() throws Exception {
+		Connection conexaoJDBC = ConnectionFactory.getConnection();
+		
+		conexaoJDBC.prepareStatement(""
+				+ "INSERT INTO usuarios "
+				+ "(id, nome, email, senha, conta_principal_id) "
+				+ "VALUES (1, 'Usuario inserido', 'inserido@gmail.com)', '1234', 1)").execute();
+		
+		ConnectionFactory.closeConnection();
+		
+		Usuario usuario = usuarioService.findByNome("Usuario inserido");
+		
+		assertNotNull("[ERRO]Houve erro ao tentar inserir um usuario no banco de dados - TestService_Usuario", usuario);
+	}
+	
+	@Test
+	public void testUsuarioConsultado() throws Exception{
+		Connection conexaoJDBC = ConnectionFactory.getConnection();
+		conexaoJDBC.prepareStatement(""
+				+ "INSERT INTO usuarios "
+				+ "(id, nome, email, senha, conta_principal_id) "
+				+ "VALUES (1, 'Usuario para consulta', 'consulta@gmail.com)', '1234', 1)").execute();
+		
+		ConnectionFactory.closeConnection();
+		
+		Usuario usuario = usuarioService.findByNome("Usuario para consulta");
+		
+		assertNotNull("[ERRO]Houve erro ao tentar consultar um usuario - TestService_Usuario", usuario);
+	}
+	
+	@Test
+	public void testAlterarUsuario() throws Exception {
+		Connection conexaoJDBC = ConnectionFactory.getConnection();
+		
+		conexaoJDBC.prepareStatement(
+				"INSERT INTO usuarios "
+				+ "(id, nome, email, senha, conta_principal_id) "
+				+ "VALUES (1, 'Usuario para alterar', 'alterar@gmail.com)', '1234', 1)").execute();
+		
+		ConnectionFactory.closeConnection();
+		
+		Usuario usuarioConsultado = usuarioService.findByNome("Usuario para alterar");
+		
+		String novoNome = usuarioConsultado.getNome() + " Alterado!";
+		
+		usuarioConsultado.setNome(novoNome);
+		
+		usuarioService.salvar(usuarioConsultado);
+		
+		Usuario usuarioAlterado = usuarioService.findByNome(novoNome);
+		
+		System.out.println(usuarioAlterado);
+		assertNotNull("[ERRO]Houve erro ao tentar alterar um usuario no TestService_Usuario", usuarioAlterado);
+	}
+	
+	@Test
+	public void testRemoverUsuario() throws Exception{
+		
+		Connection conexaoJDBC = ConnectionFactory.getConnection();
+		
+		conexaoJDBC.prepareStatement(
+				"INSERT INTO usuarios "
+				+ "(id, nome, email, senha, conta_principal_id) "
+				+ "VALUES (1, 'Usuario para remover', 'remover@gmail.com)', '1234', 1)").execute();
+		
+		ConnectionFactory.closeConnection();
+		
+		Usuario usuarioParaDeletar = usuarioService.findByNome("Usuario para remover");
+		
+		System.out.println(usuarioParaDeletar);
+		
+		usuarioService.delete(usuarioParaDeletar);
+		
+		usuarioService.findByNome(usuarioParaDeletar.getNome());
+
+		
+	}
+}

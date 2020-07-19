@@ -1,0 +1,27 @@
+package seuBarrigaPontoCom_estrategia4;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import br.ce.wcaquino.dao.utils.ConnectionFactory;
+
+public class TestService_Usuario {
+
+	@Before
+	public void setUp() throws Exception {
+		
+		Connection conexaoJDBC = ConnectionFactory.getConnection();
+		
+		conexaoJDBC.prepareStatement("").execute();
+		
+		ConnectionFactory.closeConnection();
+	}
+	
+	@Test
+	public void testInsercaoUsuario() {
+		
+	}
+}

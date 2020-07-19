@@ -31,6 +31,11 @@ public class EditarContaPage extends BaseUtil{
 		
 	}
 	
+	public String getValorCampoNome(WebDriver navegador) {
+		
+		return navegador.findElement(By.id("nome")).getAttribute("value");
+	}
+	
 	public ListaDeContasPage clicarNoBotaoSalvar(WebDriver navegador) {
 		
 		navegador.findElement(By.tagName("button")).click();

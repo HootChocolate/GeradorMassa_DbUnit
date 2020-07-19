@@ -1,0 +1,28 @@
+package seuBarrigaPontoCom_estrategia5;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import org.junit.BeforeClass;
+
+import br.ce.wcaquino.dao.utils.ConnectionFactory;
+
+public class TestService_Usuario {
+	
+	@BeforeClass
+	public void beforeClass() throws ClassNotFoundException, SQLException {
+		Connection JDBC = ConnectionFactory.getConnection();
+		
+		JDBC.prepareCall(
+				"DELETE FROM contas").execute();
+		JDBC.prepareCall(
+				"").execute();
+		JDBC.prepareCall(
+				"").execute();
+		JDBC.prepareCall(
+				"").execute();
+		
+		ConnectionFactory.closeConnection();
+	}
+	
+}

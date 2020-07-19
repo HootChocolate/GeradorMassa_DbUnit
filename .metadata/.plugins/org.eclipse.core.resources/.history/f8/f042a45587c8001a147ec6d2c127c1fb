@@ -1,0 +1,18 @@
+package seuBarrigaPontoCom_estrategia5;
+
+import java.sql.SQLException;
+
+import org.junit.BeforeClass;
+
+import br.ce.wcaquino.dao.utils.ConnectionFactory;
+
+public class TestService_Usuario {
+	
+	@BeforeClass
+	public void beforeClass() throws ClassNotFoundException, SQLException {
+		ConnectionFactory.getConnection();
+		
+		ConnectionFactory.closeConnection();
+	}
+	
+}

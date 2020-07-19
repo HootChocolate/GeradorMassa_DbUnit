@@ -1,0 +1,49 @@
+package seuBarrigaPontoCom_estrategia5;
+
+import static org.junit.Assert.assertEquals;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+
+import Utils.BaseUtil;
+import pages.HomePage;
+import pages.LoginPage;
+
+public class TestSelenium_SeuBarriga extends BaseUtil{
+
+	private static WebDriver navegador;
+	
+	@BeforeClass
+	public static void beforeClass() {
+		
+		navegador = getChromeWebDriver("https://seubarriga.wcaquino.me/login");
+		
+		new LoginPage(navegador)
+			.informarEmail("jose@jose.com")
+			.informarSenha("josejose")
+			.clicaNoBotaoEntrar()
+			.clicarResetDadosBancoDeDados(navegador);
+	}
+	
+	@Test
+	public void testConsultarConta() {
+		consultarUmaConta("Conta para extrato");
+	}
+	
+	@Test
+	public void testAlterarConta() {
+		 
+	}
+	@Test
+	public void testRemoverConta() {
+		
+	}
+	
+	@AfterClass
+	public static void tearDown() {
+		navegador.quit();
+	}
+	
+}

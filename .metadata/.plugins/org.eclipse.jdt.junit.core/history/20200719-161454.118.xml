@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestService_Usuario (1)" project="cursoMassa" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="seuBarrigaPontoCom_estrategia4.TestService_Usuario" time="0.231">
+    <testcase name="testInsercaoUsuario" classname="seuBarrigaPontoCom_estrategia4.TestService_Usuario" time="0.231"/>
+  </testsuite>
+</testrun>

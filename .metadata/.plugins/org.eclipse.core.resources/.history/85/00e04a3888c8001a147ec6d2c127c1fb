@@ -1,0 +1,46 @@
+package seuBarrigaPontoCom_estrategia5;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import br.ce.wcaquino.dao.utils.ConnectionFactory;
+import br.ce.wcaquino.service.UsuarioService;
+
+public class TestService_Usuario {
+	
+	private UsuarioService usuarioService = new UsuarioService();
+	
+	@BeforeClass
+	public void beforeClass() throws ClassNotFoundException, SQLException {
+		Connection JDBC = ConnectionFactory.getConnection();
+		
+		JDBC.prepareStatement(
+				"DELETE FROM contas").execute();
+		JDBC.prepareStatement(
+				"DELETE FROM usuarios").execute();
+		JDBC.prepareStatement(
+				"INSERT INTO usuarios"
+				+ "(id, nome, email, senha, conta_principal_id) "
+				+ "VALUES (1, 'Usuario de teste', 'teste@gmail.com', '123', 1)").execute();
+		
+		ConnectionFactory.closeConnection();
+	}
+	
+	@Test
+	public void testInserir() throws ClassNotFoundException, SQLException {
+		Connection JDBC = ConnectionFactory.getConnection();
+		
+		JDBC.prepareStatement(
+				"INSERT INTO usuarios"
+				+ "(id, nome, email, senha, conta_principal_id) "
+				+ "VALUES (2, 'Teste de inserção', 'insercao@gmail.com', '123', 2)").execute();
+		
+		
+		
+		ConnectionFactory.closeConnection();
+	}
+	
+}

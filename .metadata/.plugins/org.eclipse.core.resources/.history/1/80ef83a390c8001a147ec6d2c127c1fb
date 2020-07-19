@@ -1,0 +1,70 @@
+package seuBarrigaPontoCom_estrategia5;
+
+import static org.junit.Assert.assertEquals;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+
+import Utils.BaseUtil;
+import br.ce.wcaquino.service.ContaService;
+import pages.HomePage;
+import pages.LoginPage;
+
+public class TestSelenium_SeuBarriga extends BaseUtil{
+
+	private static WebDriver navegador;
+	private ContaService contaService = new ContaService();
+	
+	@BeforeClass
+	public static void beforeClass() {
+		
+		navegador = getChromeWebDriver("https://seubarriga.wcaquino.me/login");
+		
+		new LoginPage(navegador)
+			.informarEmail("jose@jose.com")
+			.informarSenha("josejose")
+			.clicaNoBotaoEntrar()
+			.clicarResetDadosBancoDeDados(navegador);
+	}
+	
+	@Test
+	public void testConsultarConta() {
+		String consultaConta = "Conta para extrato";
+		
+		String conta =  consultarUmaConta(consultaConta);
+		
+		assertEquals("[ERRO]Houve erro ao tenttar consultar uma conta no banco do Seu Barriga", consultaConta, conta);
+	}
+	
+	@Test
+	public void testAlterarConta() {
+		
+		String contaSeuBarriga = "Conta para extrato";
+		
+		String contaConsultada =  consultarUmaConta(contaSeuBarriga);
+		
+		contaService.findByName(contaSeuBarriga);
+		
+		String contaAlterada =  consultarUmaConta(novoNome);
+	}
+	@Test
+	public void testRemoverConta() {
+		
+	}
+	
+	@AfterClass
+	public static void tearDown() {
+		navegador.quit();
+	}
+	
+	private String consultarUmaConta(String nomeConta) {
+		return new HomePage(navegador)
+				.clicarNoMenuContas(navegador)
+				.clicarNaOpcaoLista(navegador)
+				.clicarNoBotaoEditarConta(navegador, nomeConta)
+				.getValorCampoNome(navegador);
+	}
+
+}

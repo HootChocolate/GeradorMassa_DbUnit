@@ -1,0 +1,25 @@
+package seuBarrigaPontoCom_estrategia5;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import br.ce.wcaquino.dao.utils.ConnectionFactory;
+
+public class TesteService_Conta {
+	
+	@Before
+	public void setUp() throws ClassNotFoundException, SQLException {
+		
+		PreparedStatement stmt = ConnectionFactory.getConnection().prepareStatement("");
+	}
+	
+	@Test
+	public void testInserirConta() {
+		
+	}
+	
+}

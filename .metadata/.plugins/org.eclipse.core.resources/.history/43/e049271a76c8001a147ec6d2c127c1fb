@@ -1,0 +1,18 @@
+package seuBarrigaPontoCom_estrategia5;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class TesteService_Conta {
+
+	@Before
+	public void setUp() {
+		
+	}
+	
+	@Test
+	public void testInserirConta() {
+		
+	}
+	
+}

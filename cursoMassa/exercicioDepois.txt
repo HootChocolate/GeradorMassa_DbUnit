@@ -1,0 +1,9 @@
+Criar um teste de remoção de uma conta, utilizando DbUnit.
+Faça a asserção utilizando o DbUnit, e remova a coluna de id da comparação.
+
+Fazer o teste de inserção de uma conta utilizando a estratégia 4, DbUnit, 
+e compare os resultados atual e esperado do banco de dados.
+
+Preencher infoPackage;
+
+Ver funcionamento dos outros testes com as tabelas com relacionamenot ciclicos.

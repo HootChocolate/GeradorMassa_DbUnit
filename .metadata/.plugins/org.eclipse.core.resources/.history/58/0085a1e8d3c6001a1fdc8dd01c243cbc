@@ -1,9 +1,0 @@
-package seuBarrigaPontoCom_Estrategia3;
-
-public interface MassaDAO {
-
-	public void inserirConta(String tipo, String valor) throws Exception;
-	
-	public String obterValorConta(String valor) throws Exception;
-	
-}

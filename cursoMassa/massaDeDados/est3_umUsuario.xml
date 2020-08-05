@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <usuarios id="1" nome="Usuario XML" email="usuario.xml@yahoo.com" senha="yc543m6f1fq" created_at="2020-07-19 21:13:02.572715"/>
+  <contas/>
+  <massas/>
+  <transacoes/>
+</dataset>

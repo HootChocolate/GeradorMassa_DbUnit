@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="TestSelenium_SeuBarriga" project="cursoMassa" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="seuBarrigaPontoCom_estrategia5.TestSelenium_SeuBarriga" time="1.401">
-    <testcase name="testRemoverConta" classname="seuBarrigaPontoCom_estrategia5.TestSelenium_SeuBarriga" time="1.401"/>
-  </testsuite>
-</testrun>

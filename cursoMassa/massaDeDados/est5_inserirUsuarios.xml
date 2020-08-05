@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <usuarios id="1" nome="Usuario XML: Consultar" email="consultar.xml@yahoo.com" senha="yc543m6f1fq" created_at="2020-07-19 21:13:02.572715"/>
+  <usuarios id="2" nome="Usuario XML: Alterar" email="alterar.xml@yahoo.com" senha="yc543m6f1fq" created_at="2020-07-19 21:14:02.572715"/>
+  <usuarios id="3" nome="Usuario XML: Remover" email="remover.xml@yahoo.com" senha="yc543m6f1fq" created_at="2020-07-19 21:15:02.572715"/>
+  <contas/>
+  <massas/>
+  <transacoes/>
+</dataset>

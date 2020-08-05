@@ -7,7 +7,9 @@ public class MontarAmbiente {
 	
 	private static void removerEstuturas() throws ClassNotFoundException, SQLException{
 		Connection conexao = ConnectionFactory.getConnection();
+		// remover RELACIONAMENTO CICLICOS
 //		conexao.createStatement().executeUpdate("ALTER TABLE public.usuarios DROP CONSTRAINT IF EXISTS conta_principal_id_foreign;");
+		
 		conexao.createStatement().executeUpdate("DROP TABLE IF EXISTS public.massas");
 		conexao.createStatement().executeUpdate("DROP TABLE IF EXISTS public.transacoes");
 		conexao.createStatement().executeUpdate("DROP TABLE IF EXISTS public.contas");
@@ -43,6 +45,7 @@ public class MontarAmbiente {
 				+ "CONSTRAINT transacoes_usuario_id_foreign FOREIGN KEY (usuario_id) REFERENCES public.usuarios (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION, "
 				+ "CONSTRAINT transacoes_tipo_check CHECK (tipo = ANY (ARRAY['REC'::text, 'DESP'::text])) )");
 		
+		// Adiciona RELACIONAMENTO CICLICOS
 //		conexao.createStatement().executeUpdate("ALTER TABLE public.usuarios ADD CONSTRAINT conta_principal_id_foreign FOREIGN KEY (conta_principal_id) REFERENCES public.contas (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION ");
 		ConnectionFactory.closeConnection();
 	}

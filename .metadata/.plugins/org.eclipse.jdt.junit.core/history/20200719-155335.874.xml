@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="TesteService_Conta (1)" project="cursoMassa" tests="3" started="3" failures="0" errors="0" ignored="0">
-  <testsuite name="seuBarrigaPontoCom_estrategia5.TesteService_Conta" time="0.001">
-    <testcase name="testAlteraConta" classname="seuBarrigaPontoCom_estrategia5.TesteService_Conta" time="0.001"/>
-    <testcase name="testConsultarConta" classname="seuBarrigaPontoCom_estrategia5.TesteService_Conta" time="0.0"/>
-    <testcase name="testRemoverConta" classname="seuBarrigaPontoCom_estrategia5.TesteService_Conta" time="0.0"/>
-  </testsuite>
-</testrun>

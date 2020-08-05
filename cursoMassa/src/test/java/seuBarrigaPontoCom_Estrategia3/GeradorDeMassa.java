@@ -27,6 +27,8 @@ public class GeradorDeMassa extends BaseUtil{
 	protected static String CONTA_SEU_BARRIGA = "CONTA_SrB";
 	protected static String CONTA = "CONTA";
 	protected static String USUARIO = "USUARIO";
+	
+	private static Usuario usuarioGlobal = new Usuario();
 	private static MassaDAOImpl massaDao = new MassaDAOImpl();
 	
 	/**Método responsável por acessar o servidor do Seu Barriga, criar uma conta la
@@ -97,36 +99,49 @@ public class GeradorDeMassa extends BaseUtil{
 	
 	protected static void gerarMassaDeDadosServico() throws Exception {
 		Faker faker = new Faker();
+
 		MassaDAOImpl gerador = new MassaDAOImpl();
-		
-		UsuarioService usuarioService = new UsuarioService();
+
 		ContaService contaService = new ContaService();
 		
 		String nomeConta = faker.gameOfThrones().character() + " - " + faker.number().randomDigit();
-		String nome = faker.gameOfThrones().character() + " " + faker.gameOfThrones().dragon();
-		String email = faker.internet().emailAddress();
-		String senha = faker.internet().password();
 		
-		Usuario usuario = new Usuario(nome, email, senha);
-		Conta conta = new Conta(nomeConta, usuario);
+		Conta conta = new Conta(nomeConta, usuarioGlobal);
 
-		usuarioService.salvar(usuario);
 		contaService.salvar(conta);
 
-		gerador.inserirMassa(CONTA, conta.getNome());
-		gerador.inserirMassa(USUARIO, usuario.getNome());
-		
+		gerador.inserirMassa(CONTA, conta.getNome());		
 	}
 	
 	public static void main(String[] args) throws Exception {
+		
+		inserirUsuario();
 		
 //		gerarMassaDeDadosSeleniumSeuBarriga(5);			
 		
 //		resetarValoresNaMassaDeDados();
 		
-		for(int i = 0 ; i < 3 ; i++) {
+		for(int i = 0 ; i < 5 ; i++) {
 			gerarMassaDeDadosServico();
 		}
+		
+	}
+
+	private static void inserirUsuario() throws Exception {
+		Faker faker = new Faker();
+		
+		UsuarioService usuarioService = new UsuarioService();
+		MassaDAOImpl gerador = new MassaDAOImpl();
+		
+		String nome = faker.gameOfThrones().character() + " " + faker.gameOfThrones().dragon();
+		String email = faker.internet().emailAddress();
+		String senha = faker.internet().password();
+		
+		usuarioGlobal = new Usuario(nome, email, senha);
+
+		usuarioService.salvar(usuarioGlobal);
+
+		gerador.inserirMassa(GeradorDeMassa.USUARIO, usuarioGlobal.getNome());;
 		
 	}
 

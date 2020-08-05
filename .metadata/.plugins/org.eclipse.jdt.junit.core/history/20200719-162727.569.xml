@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="TestService_Usuario (1)" project="cursoMassa" tests="4" started="4" failures="0" errors="0" ignored="0">
-  <testsuite name="seuBarrigaPontoCom_estrategia4.TestService_Usuario" time="0.529">
-    <testcase name="testUsuarioConsultado" classname="seuBarrigaPontoCom_estrategia4.TestService_Usuario" time="0.219"/>
-    <testcase name="testAlterarUsuario" classname="seuBarrigaPontoCom_estrategia4.TestService_Usuario" time="0.106"/>
-    <testcase name="testRemoverUsuario" classname="seuBarrigaPontoCom_estrategia4.TestService_Usuario" time="0.151"/>
-    <testcase name="testInsercaoUsuario" classname="seuBarrigaPontoCom_estrategia4.TestService_Usuario" time="0.053"/>
-  </testsuite>
-</testrun>

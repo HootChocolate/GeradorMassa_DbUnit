@@ -1,9 +1,0 @@
-package seuBarrigaPontoCom_Estrategia3;
-
-public class MonitorarEstoqueDeMassa {
-
-	private static int QUANTIDADE_MINIMA = 5;
-	
-	
-	
-}

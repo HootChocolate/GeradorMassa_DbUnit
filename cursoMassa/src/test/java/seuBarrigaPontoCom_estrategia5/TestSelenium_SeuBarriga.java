@@ -93,11 +93,6 @@ public class TestSelenium_SeuBarriga extends BaseUtil{
 	
 	}
 	
-	@AfterClass
-	public static void tearDown() {
-		navegador.quit();
-	}
-	
 	private String consultarUmaConta(String nomeConta) {
 		return new HomePage(navegador)
 				.clicarNoMenuContas(navegador)
@@ -106,4 +101,9 @@ public class TestSelenium_SeuBarriga extends BaseUtil{
 				.getValorCampoNome(navegador);
 	}
 
+	@AfterClass
+	public static void tearDown() {
+		navegador.quit();
+	}
 }
+

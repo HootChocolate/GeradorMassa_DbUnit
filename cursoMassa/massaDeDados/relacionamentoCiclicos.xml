@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <usuarios id="1" nome="Usuario Principal" email="usuario@principal.com" senha="123" conta_principal_id="1" created_at="2020-07-24 09:15:40.249758"/>
+  <usuarios id="2" nome="Usuario Secundario" email="usuario@secundario.com" senha="123" conta_principal_id="2" created_at="2020-07-24 09:15:40.331562"/>
+  <contas id="1" nome="Conta01, principal" usuario_id="1"/>
+  <contas id="2" nome="Conta02, principal" usuario_id="1"/>
+  <contas id="3" nome="Conta01, secundaria" usuario_id="2"/>
+  <contas id="4" nome="Conta02, secundaria" usuario_id="2"/>
+  <massas/>
+  <transacoes id="1" descricao="Transação principal, Conta01" envolvido="Envolvido" tipo="REC" data_transacao="[hoje]" valor="2.00" status="true" conta_id="1" usuario_id="1"/>
+  <transacoes id="2" descricao="Transação principal, Conta02" envolvido="Envolvido" tipo="REC" data_transacao="[hoje]" valor="4.00" status="true" conta_id="2" usuario_id="1"/>
+  <transacoes id="3" descricao="Transação principal ontem, Conta01" envolvido="Envolvido" tipo="REC" data_transacao="[ontem]" valor="6.00" status="true" conta_id="1" usuario_id="1"/>
+  <transacoes id="4" descricao="Transação principal amanha, Conta01" envolvido="Envolvido" tipo="REC" data_transacao="[amanha]" valor="8.00" status="false" conta_id="1" usuario_id="1"/>
+  <transacoes id="5" descricao="Transação principal despesa, Conta01" envolvido="Envolvido" tipo="DESP" data_transacao="[hoje]" valor="-16.00" status="true" conta_id="1" usuario_id="1"/>
+  <transacoes id="6" descricao="Transação principal da Sorte, Conta01" envolvido="Envolvido" tipo="REC" data_transacao="[hoje]" valor="32.00" status="true" conta_id="1" usuario_id="1"/>
+  <transacoes id="7" descricao="Transacao Secundaria, Conta01" envolvido="Envolvido" tipo="REC" data_transacao="[hoje]" valor="64.00" status="true" conta_id="3" usuario_id="2"/>
+  <transacoes id="8" descricao="Transacao Secundaria, Conta02" envolvido="Envolvido" tipo="REC" data_transacao="[hoje]" valor="128.00" status="true" conta_id="4" usuario_id="2"/>
+</dataset>
